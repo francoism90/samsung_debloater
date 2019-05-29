@@ -82,6 +82,7 @@ disable_apks() {
     com.samsung.android.app.talkback # Samsung Voice Assistant
     com.samsung.android.clipboarduiservice
     com.samsung.android.app.clipboardedge
+    com.samsung.clipboardsaveservice
     com.samsung.android.samsungpass # Samsung Pass
     com.samsung.android.samsungpassautofill # Samsung Pass
     com.sec.android.inputmethod
