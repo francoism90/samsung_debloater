@@ -79,14 +79,14 @@ disable_apks() {
     com.sec.android.app.sbrowser
 
     # Input/Samsung Keyboard (WARNING: Install and setup Gboard as alternative!)
-    com.samsung.android.app.talkback # Samsung Voice Assistant
-    com.samsung.android.clipboarduiservice
-    com.samsung.android.app.clipboardedge
-    com.samsung.clipboardsaveservice
-    com.samsung.android.samsungpass # Samsung Pass
-    com.samsung.android.samsungpassautofill # Samsung Pass
-    com.sec.android.inputmethod
-    com.sec.android.inputmethod.beta
+    # com.samsung.android.app.talkback # Samsung Voice Assistant
+    # com.samsung.android.clipboarduiservice
+    # com.samsung.android.app.clipboardedge
+    # com.samsung.clipboardsaveservice
+    # com.samsung.android.samsungpass # Samsung Pass
+    # com.samsung.android.samsungpassautofill # Samsung Pass
+    # com.sec.android.inputmethod
+    # com.sec.android.inputmethod.beta
   )
 
   echo -e "${BLD}${CYA}Disabling apps${NRM}"
