@@ -25,7 +25,7 @@ kill_shell() {
   ${ADB_BIN} kill-server
 }
 
-# Disable apps that may cause issues when being removed.
+# Disable apps to allow restore.
 disable_apks() {
   DISABLE=(
     # Misc
@@ -63,6 +63,7 @@ disable_apks() {
 
     # Bixby
     com.samsung.android.app.reminder # Bixby Reminder
+    com.samsung.android.app.routines
     com.samsung.android.app.settings.bixby # Samsung Bixby Settings
     com.samsung.android.app.spage # Bixby Home
     com.samsung.android.bixby.agent
@@ -72,21 +73,30 @@ disable_apks() {
     com.samsung.android.bixby.service
     com.samsung.android.bixby.wakeup
     com.samsung.android.bixbyvision.framework
+    com.samsung.android.visionintelligence
     com.samsung.systemui.bixby2
 
     # Samsung Browser
     com.samsung.android.app.sbrowseredge
     com.sec.android.app.sbrowser
 
-    # Input/Samsung Keyboard (WARNING: Install and setup Gboard as alternative!)
-    # com.samsung.android.app.talkback # Samsung Voice Assistant
-    # com.samsung.android.clipboarduiservice
-    # com.samsung.android.app.clipboardedge
-    # com.samsung.clipboardsaveservice
-    # com.samsung.android.samsungpass # Samsung Pass
-    # com.samsung.android.samsungpassautofill # Samsung Pass
-    # com.sec.android.inputmethod
-    # com.sec.android.inputmethod.beta
+    # Samsung VR
+    com.samsung.android.hmt.vrsvc
+    com.samsung.android.app.vrsetupwizardstub
+    com.samsung.android.hmt.vrshell
+
+    # Samsung Dex
+    com.sec.android.app.dexonpc
+
+    # Input/Samsung Keyboard (WARNING: Install and setup Gboard first as alternative!)
+    com.samsung.android.app.talkback # Samsung Voice Assistant
+    com.samsung.android.clipboarduiservice
+    com.samsung.android.app.clipboardedge
+    com.samsung.clipboardsaveservice
+    com.samsung.android.samsungpass # Samsung Pass
+    com.samsung.android.samsungpassautofill # Samsung Pass
+    com.sec.android.inputmethod
+    com.sec.android.inputmethod.beta
   )
 
   echo -e "${BLD}${CYA}Disabling apps${NRM}"
@@ -112,7 +122,7 @@ uninstall_apks() {
     com.facebook.system
 
     # Microsoft Skydrive
-    #com.microsoft.skydrive
+    com.microsoft.skydrive
   )
 
   echo -e "${BLD}${BLU}Uninstalling apps${NRM}"
