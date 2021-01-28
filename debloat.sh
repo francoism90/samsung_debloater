@@ -3,6 +3,7 @@
 export BLD="\e[01m" RED="\e[01;31m" BLU="\e[01;34m" CYA="\e[01;36m" NRM="\e[00m"
 export ADB_BIN='/usr/bin/adb'
 export PM_DCMD='pm disable-user --user 0'
+export PM_ECMD='pm enable'
 export PM_UCMD='pm uninstall --user 0'
 
 command -v ${ADB_BIN} >/dev/null 2>&1 || {
@@ -76,10 +77,6 @@ disable_apks() {
     com.samsung.android.visionintelligence
     com.samsung.systemui.bixby2
 
-    # Samsung Browser
-    com.samsung.android.app.sbrowseredge
-    com.sec.android.app.sbrowser
-
     # Samsung VR
     com.samsung.android.hmt.vrsvc
     com.samsung.android.app.vrsetupwizardstub
@@ -93,8 +90,6 @@ disable_apks() {
     com.samsung.android.clipboarduiservice
     com.samsung.android.app.clipboardedge
     com.samsung.clipboardsaveservice
-    com.samsung.android.samsungpass # Samsung Pass
-    com.samsung.android.samsungpassautofill # Samsung Pass
     com.sec.android.inputmethod
     com.sec.android.inputmethod.beta
   )
@@ -104,6 +99,27 @@ disable_apks() {
     prepare_apk ${APP}
 
     result=$(${ADB_BIN} shell ${PM_DCMD} ${APP})
+    echo -e "${BLD} ${APP}: ${BLU}${result}${NRM}"
+  done
+}
+
+# Re-enable apks.
+enable_apks() {
+  ENABLE=(
+    # Samsung Browser
+    com.samsung.android.app.sbrowseredge
+    com.sec.android.app.sbrowser
+
+    # Samsung Pass
+    com.samsung.android.samsungpass
+    com.samsung.android.samsungpassautofill
+  )
+
+  echo -e "${BLD}${CYA}Enabling apps${NRM}"
+  for APP in "${ENABLE[@]}"; do
+    prepare_apk ${APP}
+
+    result=$(${ADB_BIN} shell ${PM_ECMD} ${APP})
     echo -e "${BLD} ${APP}: ${BLU}${result}${NRM}"
   done
 }
@@ -122,7 +138,7 @@ uninstall_apks() {
     com.facebook.system
 
     # Microsoft Skydrive
-    com.microsoft.skydrive
+    # com.microsoft.skydrive
   )
 
   echo -e "${BLD}${BLU}Uninstalling apps${NRM}"
@@ -144,5 +160,6 @@ prepare_apk() {
 
 init_shell
 disable_apks
+enable_apks
 uninstall_apks
 kill_shell
